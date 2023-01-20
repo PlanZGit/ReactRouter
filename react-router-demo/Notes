@@ -1,0 +1,42 @@
+1. What and Why
+   It's a fully feature client side and server-side routing library for React
+   Helps create and navigate between different URLs that make up your web application
+   Provides unique URLs for different components in the app and makes th UI easily shareable with others
+
+Pre-requisites
+-React Fundamentals
+-React Hooks
+
+2.  Installation and setup
+    npx create-react-app react-router-demo
+    npm install react-router-dom@6
+
+3.  Configuring Routes
+    Wrap the root component of the app with <BrowserRouter> from react-router-dom
+    Create componenets that need to be rendered at different url <Home> <About>
+    Config the Routes using <routes> and <route> components from react-router-dom
+    Routes contain multiply route components, each route accept a path prop
+    which corresponds to the path in the browser url and the react element render
+    when th path is matched
+
+        <BrowserRouter>
+          <App />
+        </BrowserRouter>
+
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+          <Route path="about" element={<About />}></Route>
+        </Routes>
+
+        http://localhost:3000
+        http://localhost:3000/about
+
+4.  Links
+    Create a Navbar component
+    Clicking the links will navigave to the urls
+
+        import { Link } from "react-router-dom"
+        <Link to="/">Home</Link>
+        <Link to="/about">About</Link>
+
+    Add Navbar component to App.js
