@@ -19,9 +19,13 @@ Pre-requisites
     which corresponds to the path in the browser url and the react element render
     when th path is matched
 
+    index.js
+
         <BrowserRouter>
           <App />
         </BrowserRouter>
+
+    App.js
 
         <Routes>
           <Route path="/" element={<Home />}></Route>
@@ -33,10 +37,48 @@ Pre-requisites
 
 4.  Links
     Create a Navbar component
-    Clicking the links will navigave to the urls
+    Add Navbar component to App.js
+    Use the links will navigave to the urls
 
         import { Link } from "react-router-dom"
         <Link to="/">Home</Link>
         <Link to="/about">About</Link>
 
-    Add Navbar component to App.js
+5.  Active Links
+    Use Navlink, by default it receives an active class when the link is the current route
+    Inspect the element, with this active class , we can use it to add some styles
+    We can style the active class either in index.css or the active boolean flag injected into the style function
+
+    Link vs Navlink
+    Navlink is use for navbar / breadcrumbs / set of tabs
+    where you would like to highlight the current seleected item
+    useful context with screen readers
+
+    Link
+    Navigate other parts of the app
+    we would not want active link to be applied
+    when it is not needed
+
+    Navbar.js
+
+          import { Navlink } from "react-router-dom"
+          <NavLink to="/">Home</NavLink>
+          <NavLink to="/about">About</NavLink>
+
+    index.css
+
+          nav a.active {
+          text-decoration: none;
+          font-weight: bold;
+          }
+
+    Using active link as the style props
+
+    Navbar.js
+
+        const navLinkStyles = ({ isActive }) => {
+          return {
+            fontWeight: isActive ? "bold" : "normal",
+            textDecoration: isActive ? "none" : "underline",
+          };
+        };
