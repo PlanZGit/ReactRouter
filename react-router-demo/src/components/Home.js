@@ -1,6 +1,12 @@
-import React from "react";
+import { useNavigate } from "react-router-dom";
 
 //rafc shortcut
 export const Home = () => {
-  return <div>Home Page</div>;
+  const navigate = useNavigate();
+  return (
+    <>
+      <div>Home Page</div>
+      <button onClick={() => navigate("order-summary")}>Place Order</button>
+    </>
+  );
 };
