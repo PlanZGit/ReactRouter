@@ -82,3 +82,76 @@ Pre-requisites
             textDecoration: isActive ? "none" : "underline",
           };
         };
+
+6.  Navigating Programmatically
+    Create OrderSummary componenet, import useNavigate
+
+    create a button Place Order , onClick={() => navigate("order-summary")}
+    create a button Go back , set onClick={(() => navigate(-1)
+    create a const set to useNavigate()
+    passing a path or number that indicate a change in history stack
+    else we can replace by setting it to true
+
+    OrderSummary.js
+
+        import { useNavigate } from "react-router-dom";
+        const navigate = useNavigate();
+        <div>Order comfirmed!</div>
+        <button onClick={(() => navigate(-1))}>Go back</button>
+
+7.  No Match Route
+    Create a NoMatch component
+    http://localhost:3000/help has no route
+    Set route path to \* for no match route
+
+    App.js
+
+        <Route path="*" element={<NoMatch />}></Route>
+
+    NoMatch.js
+
+        export const NoMatch = () => {
+          return <div>Page not found</div>;
+        };
+
+8.  Nested Route
+    create <Products> component
+    add <Product> to <Navbar>
+    create nested route component <FeatureProducts> <NewProducts>
+    import Outlet to render nested route
+
+    http://localhost:3000/products/feature
+    http://localhost:3000/products/new
+
+    App.js
+
+        <Route path="products" element={<Products />}>
+          <Route path="feature" element={<FeaturedProducts />}></Route>
+          <Route path="new" element={<NewProducts />}></Route>
+        </Route>
+
+    Products.js
+
+        import { Link, Outlet } from "react-router-dom";
+        <div>
+          <input type="search" placeholder="Search Products" />
+        </div>
+        <nav>
+         <Link to="feature">Featured</Link>
+         <Link to="new">New</Link>
+        </nav>
+        <Outlet />
+
+9.  Index Route
+    When you want a route to be render at the parent url
+    make use of an index route
+    The index route will contain the index prop instead of
+    the path prop
+
+    App.js
+
+        <Route path="products" element={<Products />}>
+          <Route index element={<FeaturedProducts />} />
+          <Route path="feature" element={<FeaturedProducts />}></Route>
+          <Route path="new" element={<NewProducts />}></Route>
+        </Route>
