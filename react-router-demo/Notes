@@ -202,3 +202,41 @@ Pre-requisites
         const userId = params.userId
           return <div>UserDetails {userId}</div>;
         };
+
+12. Search Params
+    Apply filters in a listing page for example like amazon or ecommerce site
+    Selecting a filter will update the url with a search param, this lets you share the link or bookmark
+    useSearchParams is simliar to the useState hook in react
+    instead of storing in memory it is stored in the url
+    http://localhost:3000/users?filter=active
+    showActiveUsers is a boolean
+
+    Users.js
+    import { Outlet, NavLink, useSearchParams } from "react-router-dom";
+    const [searchParams, setSearchParams] = useSearchParams();
+    const showActiveUsers = searchParams.get("filter") === "active";
+
+        <div>
+        <button onClick={() => setSearchParams({ filter: "active" })}>Active Users</button>
+        <button onClick={() => setSearchParams({})}>Reset Filter</button>
+        </div>
+
+        {showActiveUsers ? ( <h2>Showing all active users</h2> ) : ( <h2>Showing all users</h2>)}
+
+13. Relative Links
+    -Relatives paths or relative links don't start with a forward slash /
+    and will inherit the closest route in which the are rendered
+    -Absolute links make more sense for components like primary navigation Navbar.js
+
+    not vaild
+    http://localhost:3000/feature
+    Products.js
+
+            <Link to="/feature">Featured</Link>
+
+    vaild
+    http://localhost:3000/products/feature
+    Products.js
+
+            <Link to="feature">Featured</Link>
+            <Link to="/products/feature">Featured</Link>
