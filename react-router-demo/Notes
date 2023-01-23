@@ -155,3 +155,50 @@ Pre-requisites
           <Route path="feature" element={<FeaturedProducts />}></Route>
           <Route path="new" element={<NewProducts />}></Route>
         </Route>
+
+10. Dynamic Routes
+    -When dealing with a list detail pattern
+    or if the route parameter can vary in value
+    make use of dynamic routes
+    Specify the url param denoted by a colon : prefix in the path
+    -react router will always match specific before a dynamic route
+    -it is possible to have nested dynamic routes
+
+    Admin.js
+    Users.js
+    UserDetail.js
+
+        <Route path="users" element={<Users />}>
+          <Route path=":userId" element={<UserDetails />} />
+          <Route path="admin" element={<Admin />} />
+        </Route>
+
+    http://localhost:3000/users/num
+    http://localhost:3000/users/string
+    http://localhost:3000/users/admin
+
+11. URL Params
+    We can render the userId in JSX
+    userId corresponds to the dynamic segment
+    we have specified in the route config in App.js
+
+    App.js
+
+        <Route path=":userId" element={<UserDetails />} />
+
+    UerDetails.js
+
+        import { useParams } from "react-router-dom";
+        export const UserDetails = () => {
+          const { userId } = useParams();
+          return <div>UserDetails {userId}</div>;
+        };
+
+    or
+
+        import { useParams } from "react-router-dom";
+        export const UserDetails = () => {
+        const params = useParams()
+        const userId = params.userId
+          return <div>UserDetails {userId}</div>;
+        };
