@@ -1,4 +1,4 @@
-import { Outlet, NavLink } from "react-router-dom";
+import { Outlet, NavLink, useSearchParams } from "react-router-dom";
 
 export const Users = () => {
   const userLinkStyles = ({ isActive }) => {
@@ -9,6 +9,8 @@ export const Users = () => {
     };
   };
 
+  const [searchParams, setSearchParams] = useSearchParams();
+  const showActiveUsers = searchParams.get("filter") === "active";
   return (
     <div className="users">
       <NavLink to="1" style={userLinkStyles}>
@@ -22,6 +24,18 @@ export const Users = () => {
       </NavLink>
 
       <Outlet />
+
+      <div>
+        <button onClick={() => setSearchParams({ filter: "active" })}>
+          Active Users
+        </button>
+        <button onClick={() => setSearchParams({})}>Reset Filter</button>
+      </div>
+      {showActiveUsers ? (
+        <h2>Showing all active users</h2>
+      ) : (
+        <h2>Showing all users</h2>
+      )}
     </div>
   );
 };
