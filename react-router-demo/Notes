@@ -240,3 +240,21 @@ Pre-requisites
 
             <Link to="feature">Featured</Link>
             <Link to="/products/feature">Featured</Link>
+
+14. Lazy Loading
+    lazy loading is a technique where components not require on the home page can be split
+    into separate code bundles and downloaded only when the user navigate to the page
+    Reduce the amount of code needed during the initial load
+
+    App.js
+
+    const LazyAbout = React.lazy(() => import("./components/About"));
+
+        <Route path="about" element={
+        <React.Suspense fallback="Loading...">
+          <LazyAbout />
+        </React.Suspense>
+        }/>
+
+    About.js
+    export default About;
