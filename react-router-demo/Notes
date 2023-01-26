@@ -260,6 +260,32 @@ Pre-requisites
     export default About;
 
 15. Authentication and Protected Routes
+    -First we created the <Profile> route which should be protected
+    -Next we implemented the functionality to <Login> and logout a user
+    -For that we relied on react useContext and provided the context vaule
+    to the entire componenetry.
+    -After that we implemented the login page, useAuth from <auth> to sign in
+    and useNavigate from react to redirectPath
+
+    -Finaly we created the <RequiredAuth> to see if user is login or not
+    If the user is not log in, redirect to the login route
+    -Now we wrap any component route with <RequiredAuth> if it needs protect
+    -Last we prevent the user from the login route after they login , by using the replace
+
+    App.js
+
+          <AuthProvider>
+            <Navbar />
+            ...
+            <Routes>
+            ...
+            <Routes>
+            <RequireAuth>
+              <Profile>
+            </RequireAuth>
+
+          </AuthProvider>
+
     auth.js
     RequireAuth.js
     Login.js
