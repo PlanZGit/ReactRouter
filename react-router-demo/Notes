@@ -258,3 +258,9 @@ Pre-requisites
 
     About.js
     export default About;
+
+15. Authentication and Protected Routes
+    auth.js
+    RequireAuth.js
+    Login.js
+    Profile.js
