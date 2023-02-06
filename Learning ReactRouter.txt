@@ -1,0 +1,7 @@
+Learning React Router v6:
+
+1. Routes, Route, Nested Route, Index Route
+2. Dynamic Routes, useParams, useSearchParams
+3. Links, Navlinks, useNavgate 
+4. Lazy Loading
+5. Authentication and Protected Routes
